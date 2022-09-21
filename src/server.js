@@ -20,6 +20,7 @@ app.get('/', (req, res, next)=> {
     next();
 });
 
+
 app.get('/person', validator)
 
 // * Route

@@ -19,9 +19,9 @@ describe('Basic API Server', () => {
 
     it('Handles \'/person\' route without query param correctly', async() => {
         const response = await request.get('/person');
-        console.log(`response message : ${JSON.stringify(response)}`);
+        // console.log(`response message : ${JSON.stringify(response)}`);
         expect(response.status).toEqual(500)
-        expect(response.text).toEqual('Name Not Found.')
+        expect(response.text).toEqual('Name Not Found from validator')
     });
 
     it('Handles \'/person\' route with query param correctly', async () => {
