@@ -7,25 +7,39 @@ const { app } = require('../src/server');
 const request = supertest(app);
 
 describe('Validator Middleware', () => {
-    it('Handles routes with name queries', async () => {
+    it('Handles routes without name queries', async () => {
 
-        let req = {};
-        let res = {};
-        let next = jest.fn();
+        const req = {
+            query: {
+                name: 'Fred',
+            },
+        };
+        const res = {};
+        const next = jest.fn();
 
         const response = await request.get('/person');
         // expect(next).toHaveBeenCalled();
-        expect(response.status).toBe(500)
+        expect(response.status).toEqual(500);
     });
 
-    // it('Handles validator', async () => {
-    //     request.query.name = 'Fred';
-    //     return validator(request ,response ,next)
-    //         .then(() => {
-    //             expect(response.status).toHaveBeenCalledWith(200)
-    //             // expect(response.text).toEqual('Name Not Found from validator')
-    //             expect(response.text).toEqual('Fred')
-    //             expect(next).toBeCalled();
-    //         })
-    // })
+    it('Handles routes with name queries', async () => {
+
+        const response = await request.get('/person?name=something')
+        console.log(response._body);
+        expect(response._body).toBeTruthy()
+        expect(response.statusCode).toEqual(200);
+    });
+
+    test('Fails as expected', async () => {
+        const req = {
+            query: {
+                banana: 'hello',
+            },
+        };
+        const res = {};
+        const next = jest.fn();
+        validator(req, res, next);
+            expect(req.query.name).not.toBeTruthy();
+            // expect(next).toHaveBeenCalledWith()
+    })
 });

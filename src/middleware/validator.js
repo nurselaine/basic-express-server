@@ -7,12 +7,12 @@ module.exports = (req, res, next) => {
     // console.log(`name ${name}`);
     try {
         if(name) {
-            res.status(200).send(`name: ${name}`);
+            res.status(200).json({"name": name});
+            next();
         } else {
             res.status(500).send('Name Not Found from validator');
         }
     } catch(error) {
         next(error);
     }
-    next();
 }

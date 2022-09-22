@@ -27,6 +27,6 @@ describe('Basic API Server', () => {
     it('Handles \'/person\' route with query param correctly', async () => {
         const response = await request.get('/person').query('name=Fred');
         expect(response.status).toEqual(200)
-        expect(response.text).toEqual(`name: Fred`);
+        expect(response.body).toEqual({"name": "Fred"});
     });
 })

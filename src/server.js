@@ -20,11 +20,13 @@ app.get('/', (req, res, next)=> {
     next();
 });
 
+// add route validator after validator
+app.get('/person', validator, (req, res, next) => {
+    res.status(200).send(req.query);
+});
 
-app.get('/person', validator)
-
-// * Route
-app.use(errorHandler1);
+// Error Routes
+app.use( '*' ,errorHandler1);
 app.use(errorHandler2);
 
 
