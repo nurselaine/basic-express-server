@@ -9,22 +9,28 @@ const PORT = process.env.PORT || 3002;
 const errorHandler1 = require('./error-handlers/404');
 const errorHandler2 = require('./error-handlers/500');
 const logger = require('./middleware/logger');
-const validator = require('./middleware/validator');
+// const validator = require('./middleware/validator');
 
 // Routes
 
 app.use(logger);
 
 app.get('/', (req, res, next)=> {
-    res.status(200).send('Hello world');
-    next();
+    res.status(200).send('Hello world, welcome to my simple server');
 });
 
+app.get('/dogs', (req, res, next)=> {
+    res.status(200).send('My dog is the best dog in the world!');
+});
 
-app.get('/person', validator)
+// add route validator after validator
+app.get('/person', (req, res, next) => {
+    const { name } = req.query;
+    res.status(200).send(`Hello ${name} welcome to my server!`);
+});
 
-// * Route
-app.use(errorHandler1);
+// Error Routes
+app.use( '*' ,errorHandler1);
 app.use(errorHandler2);
 
 

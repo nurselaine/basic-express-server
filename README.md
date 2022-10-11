@@ -6,21 +6,24 @@
  - tests report
 
  #### Setup
-    **.env** requirements
-    - PORT - 3001
+**.env** requirements
+- PORT - 3001
 
-    Running the app
-    - npm start
-    - Endpoint: /person (with or without name query)
-        - returns String
-
-            Hello World
+Running the app
+- npm start
+- Endpoint: /person (with name query)
+    - returns String
+    - /dogs
+        - returns a string
+    - /hello
+        - returns a string
 
 #### Tests
-    - Unit Tests: npm run test
-    - Lint Tests: npm run lint
+- Unit Tests: npm run test
 
-**UML**
+#### UML
+
+![UML](UML.png)
 
 WIC - will discuss further in class 9/20
 
